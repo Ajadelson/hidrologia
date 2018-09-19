@@ -19,6 +19,7 @@ class Hidro():
         self.v60 = []
         self.v80 = []
         self.vmedia = []
+        self.vsetor = []
 
     def area_setor(self):
         for i in range(self.quantidade - 1):
@@ -41,10 +42,15 @@ class Hidro():
             media = (v1 + 2*v2 + v3) / 4
             self.vmedia.append(media)
 
-        print(self.v20)
-        print(self.v60)
-        print(self.v80)
-        print(self.vmedia)
+        for i in range(len(self.vmedia)+1):
+            if i == 0:
+                self.vsetor.append(self.vmedia[i]/2)
+            elif i == (len(self.vmedia)):
+                self.vsetor.append(self.vmedia[i-1]/2)
+            else:
+                self.vsetor.append((self.vmedia[i]+self.vmedia[i-1])/2)
+        
+
 
     def graf(self):
 
