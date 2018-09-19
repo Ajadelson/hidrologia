@@ -20,6 +20,8 @@ class Hidro():
         self.v80 = []
         self.vmedia = []
         self.vsetor = []
+        self.vazao_setor = []
+        self.vazao_total = 0
 
     def area_setor(self):
         for i in range(self.quantidade - 1):
@@ -49,13 +51,35 @@ class Hidro():
                 self.vsetor.append(self.vmedia[i-1]/2)
             else:
                 self.vsetor.append((self.vmedia[i]+self.vmedia[i-1])/2)
-        
+
+    def vazao(self):
+        self.area_setor()
+        self.velocidades()
+
+        for i in range(len(self.vsetor)):
+            area = 0
+            if i == 0:
+                for j in range(5):
+                    area += self.area[j]
+                self.vazao_setor.append(area * self.vsetor[i])
+            elif i == (len(self.vsetor)-1):
+                for j in range(len(self.vsetor)-1,len(self.area)):
+                    area += self.area[j]
+                self.vazao_setor.append(area * self.vsetor[i])
+            else:
+                self.vazao_setor.append(self.area[i+4] * self.vsetor[i])
+        for i in self.vazao_setor:
+            self.vazao_total += i
 
 
     def graf(self):
+        self.vazao()
 
         linha = [go.Scatter(x=self.xi, y=self.yi, name='batimetria',
-                line=dict(shape='spline', width=4))]
+                line=dict(shape='spline', width=4))
+
+                ]
+
 
         layout = go.Layout(title='Perfil da Secção', xaxis=dict(title='distancia[m]'),
         yaxis = dict(title='altura[m]', autorange='reversed'))
