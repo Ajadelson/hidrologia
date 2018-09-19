@@ -27,7 +27,8 @@ class Hidro():
             else:
                 self.area.append((self.yi[i]+self.yi[i+1])*0.1)
 
-    def velocidade(self):
+    
+
 
 
     def graf(self):
