@@ -6,11 +6,17 @@ import plotly
 
 class Hidro():
 
-    def __init__(self, xi, yi):
+    def __init__(self, xi, yi,v20,v60,v80):
         self.xi = xi
         self.yi = yi
         self.quantidade = len(yi)
         self.area = []
+        self.n20 = v20
+        self.n60 = v60
+        self.n80 = v80
+        self.v20 = []
+        self.v60 = []
+        self.v80 = []
 
     def area_setor(self):
         for i in range(self.quantidade - 1):
@@ -20,8 +26,9 @@ class Hidro():
                 self.area.append(self.yi[i]*0.1)
             else:
                 self.area.append((self.yi[i]+self.yi[i+1])*0.1)
-        print (self.area)
-        print(len(self.area))
+
+    def velocidade(self):
+
 
     def graf(self):
 
