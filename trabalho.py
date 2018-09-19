@@ -76,7 +76,16 @@ class Hidro():
         self.vazao()
 
         linha = [go.Scatter(x=self.xi, y=self.yi, name='batimetria',
-                line=dict(shape='spline', width=4))
+                line=dict(shape='spline', width=4), fill='tonexty'),
+                go.Scatter(x=self.xi[5:32], y=[y*0.2 for y in self.yi[5:32]],
+                name='20%', mode='markers', text=["v = %.4f m/s"%j for j in self.v20],
+                marker=dict(size = 10)),
+                go.Scatter(x=self.xi[5:32], y=[y*0.6 for y in self.yi[5:32]],
+                name='60%', mode='markers', text=["v = %.4f m/s"%i for i in self.v60],
+                marker=dict(size = 10)),
+                go.Scatter(x=self.xi[5:32], y=[y*0.8 for y in self.yi[5:32]],
+                name='80%', mode='markers', text=["v = %.4f m/s"%h for h in self.v80],
+                marker=dict(size = 10))
 
                 ]
 
