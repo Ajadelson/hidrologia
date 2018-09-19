@@ -10,4 +10,4 @@ y=[0,0.7,0.7,0.82,0.87,
 0.8,0.6,0.47,0]
 
 teste = Hidro(x,y)
-teste.graf()
+teste.area_setor()

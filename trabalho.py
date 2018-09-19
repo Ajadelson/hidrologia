@@ -9,8 +9,19 @@ class Hidro():
     def __init__(self, xi, yi):
         self.xi = xi
         self.yi = yi
-        self.funcao = None
-        self.matriz = []
+        self.quantidade = len(yi)
+        self.area = []
+
+    def area_setor(self):
+        for i in range(self.quantidade - 1):
+            if i == 0:
+                self.area.append((self.yi[i+1]*0.2)/2)
+            elif i == (self.quantidade - 2):
+                self.area.append(self.yi[i]*0.1)
+            else:
+                self.area.append((self.yi[i]+self.yi[i+1])*0.1)
+        print (self.area)
+        print(len(self.area))
 
     def graf(self):
 
