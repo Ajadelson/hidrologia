@@ -1,4 +1,5 @@
 from sympy import *
+from calcvelocidade import *
 from plotly.graph_objs import *
 import plotly.graph_objs as go
 import numpy as np
@@ -17,6 +18,7 @@ class Hidro():
         self.v20 = []
         self.v60 = []
         self.v80 = []
+        self.vmedia = []
 
     def area_setor(self):
         for i in range(self.quantidade - 1):
@@ -27,9 +29,22 @@ class Hidro():
             else:
                 self.area.append((self.yi[i]+self.yi[i+1])*0.1)
 
-    
+    def velocidades(self):
+        for i in range(len(self.n20)):
+            v1 = vel(self.n20[i])
+            self.v20.append(v1)
+            v2 = vel(self.n60[i])
+            self.v60.append(v2)
+            v3 = vel(self.n80[i])
+            self.v80.append(v3)
 
+            media = (v1 + 2*v2 + v3) / 4
+            self.vmedia.append(media)
 
+        print(self.v20)
+        print(self.v60)
+        print(self.v80)
+        print(self.vmedia)
 
     def graf(self):
 
