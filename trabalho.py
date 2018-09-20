@@ -64,12 +64,15 @@ class Hidro():
             self.vmtotal += i*0.2*self.vmedia[h]
             h+=1
 
-        print(self.vmsecao)
-        print(self.vmtotal)
-        
+        print("#---------------------#     MEIA SEÇÃO     #------------------#")
+        print("A vazão por setor é:")
+        for i in range(len(self.vmsecao)):
+            print("Setor %d -> %.4f m³/s"%(i+1,self.vmsecao[i]))
+        print("\nA Vazão total é %f m³/s"%self.vmtotal)
+        print("#---------------------#--------------------#------------------#")
+
     def vazao(self):
-        self.area_setor()
-        self.velocidades()
+        self.meia_secao()
 
         for i in range(len(self.vsetor)):
             area = 0
@@ -85,11 +88,11 @@ class Hidro():
                 self.vazao_setor.append(self.area[i+4] * self.vsetor[i])
         for i in self.vazao_setor:
             self.vazao_total += i
-        print("#---------------------#--------------------#------------------#")
-        print("A Vazão total é %f m³/s"%self.vazao_total)
+        print("#---------------------#      SIMPSON      #------------------#")
         print("A vazão por setor é:")
         for i in range(len(self.vazao_setor)):
             print("Setor %d -> %.4f m³/s"%(i+1,self.vazao_setor[i]))
+        print("\nA Vazão total é %f m³/s"%self.vazao_total)
         print("#---------------------#--------------------#------------------#")
 
 
@@ -107,11 +110,26 @@ class Hidro():
                 go.Scatter(x=self.xi[5:32], y=[y*0.8 for y in self.yi[5:32]],
                 name='80%', mode='markers', text=["v = %.4f m/s"%h for h in self.v80],
                 marker=dict(size = 10))
-
                 ]
+        anote = []
+        casa = 5
+        for i in range(len(self.vmsecao)):
+            anote.append(dict(
+            x=self.xi[casa],
+            y=self.yi[casa],
+            xref='x',
+            yref='y',
+            text='Vmedia \n %.4f m/s'%self.vmsecao[i],
+            showarrow=True,
+            arrowhead=7,
+            textangle=-90,
+            ax=0,
+            ay=80
+        ))
+            casa+=1
 
-
-        layout = go.Layout(title='Perfil da Secção', xaxis=dict(title='distancia[m]'),
-        yaxis = dict(title='altura[m]', autorange='reversed'))
+        layout = go.Layout(annotations=anote,title='Perfil da Secção',
+        xaxis=dict(title='distancia[m]'),
+        yaxis = dict(title='altura[m]', range=[-0.4,3], autorange='reversed'))
         fig = go.Figure(data=linha, layout=layout)
         plotly.offline.plot(fig)
