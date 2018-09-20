@@ -70,6 +70,12 @@ class Hidro():
                 self.vazao_setor.append(self.area[i+4] * self.vsetor[i])
         for i in self.vazao_setor:
             self.vazao_total += i
+        print("#---------------------#--------------------#------------------#")
+        print("A Vazão total é %f m³/s"%self.vazao_total)
+        print("A vazão por setor é:")
+        for i in range(len(self.vazao_setor)):
+            print("Setor %d -> %.4f m³/s"%(i+1,self.vazao_setor[i]))
+        print("#---------------------#--------------------#------------------#")
 
 
     def graf(self):
