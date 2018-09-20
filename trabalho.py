@@ -22,6 +22,8 @@ class Hidro():
         self.vsetor = []
         self.vazao_setor = []
         self.vazao_total = 0
+        self.vmsecao = []
+        self.vmtotal = 0
 
     def area_setor(self):
         for i in range(self.quantidade - 1):
@@ -52,6 +54,19 @@ class Hidro():
             else:
                 self.vsetor.append((self.vmedia[i]+self.vmedia[i-1])/2)
 
+    def meia_secao(self):
+        if self.vazao_total == 0:
+            self.area_setor()
+            self.velocidades()
+        h = 0
+        for i in self.yi[5:32]:
+            self.vmsecao.append(i*0.2*self.vmedia[h])
+            self.vmtotal += i*0.2*self.vmedia[h]
+            h+=1
+
+        print(self.vmsecao)
+        print(self.vmtotal)
+        
     def vazao(self):
         self.area_setor()
         self.velocidades()
