@@ -1,0 +1,12 @@
+Para rodar o algoritmo é preciso ter instalado em sua maquina:
+python==3.6
+plotly==1.9
+
+Rode o arquivo run.py.
+Caso utilize o terminal ou o prompt de comando:
+entre na pasta que está os arquivos e insira o seguinte comando:
+
+python run.py
+
+O algoritmo fará o resto.
+
