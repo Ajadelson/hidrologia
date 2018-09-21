@@ -10,3 +10,6 @@ python run.py
 
 O algoritmo fará o resto.
 
+Caso apenas deseje ver o grafico sem as vazões por setor e vazão total,
+basta apenas executar o temp-plot.py.
+
